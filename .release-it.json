@@ -11,8 +11,7 @@
     "releaseName": "v${version}"
   },
   "npm": {
-    "publish": true,
-    "publishArgs": ["--access", "public"]
+    "publish": false
   },
   "hooks": {
     "before:init": ["npm run typecheck", "npm run test:unit"],
