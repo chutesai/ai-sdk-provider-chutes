@@ -25,6 +25,19 @@ A production-ready provider for using **open-source AI models** hosted on [Chute
 ✅ **Error Handling** - Comprehensive error mapping and retry logic  
 ✅ **Test Coverage** - 327+ tests with comprehensive coverage
 
+## Versioning
+
+This project follows [Semantic Versioning 2.0.0](https://semver.org/):
+- **MAJOR** version for incompatible API changes
+- **MINOR** version for new functionality in a backwards compatible manner
+- **PATCH** version for backwards compatible bug fixes
+
+All releases are tagged and available on the [releases page](https://github.com/tududes/ai-sdk-provider-chutes/releases).
+
+## Changelog
+
+All notable changes are documented in the [CHANGELOG.md](./CHANGELOG.md) file. The changelog is automatically generated using [Conventional Commits](https://www.conventionalcommits.org/).
+
 ## Why Chutes.ai?
 
 Chutes.ai provides easy access to **open-source AI models** like:
