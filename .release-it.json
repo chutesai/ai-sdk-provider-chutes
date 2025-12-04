@@ -15,7 +15,10 @@
   },
   "hooks": {
     "before:init": ["npm run typecheck", "npm run test:unit"],
-    "after:bump": "npm run build"
+    "after:bump": [
+      "node -e \"const fs=require('fs');const pkg=require('./package.json');fs.writeFileSync('src/version.ts',`export const VERSION = '${pkg.version}';\\n`)\"",
+      "npm run build"
+    ]
   },
   "plugins": {
     "@release-it/conventional-changelog": {
