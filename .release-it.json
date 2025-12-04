@@ -16,7 +16,7 @@
   "hooks": {
     "before:init": ["npm run typecheck", "npm run test:unit"],
     "after:bump": [
-      "node -e \"const fs=require('fs');fs.writeFileSync('src/version.ts',\\\"export const VERSION = '${version}';\\\\n\\\")\"",
+      "node -e \"const fs=require('fs');fs.writeFileSync('src/version.ts','export const VERSION = \\'${version}\\';\\n')\"",
       "npm run build"
     ]
   },
