@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.1.2](/compare/v0.1.1...v0.1.2) (2025-12-04)
+
 ## 0.1.1 (2025-12-03)
 
 All notable changes to this project will be documented in this file.
