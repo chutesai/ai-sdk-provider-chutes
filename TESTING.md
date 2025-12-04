@@ -29,7 +29,7 @@ npm install @chutes-ai/ai-sdk-provider ai
 ```json
 {
   "dependencies": {
-    "@chutes-ai/ai-sdk-provider": "git+https://github.com/YOUR_USERNAME/ai-sdk-provider-chutes.git",
+    "@chutes-ai/ai-sdk-provider": "git+https://github.com/chutesai/ai-sdk-provider-chutes.git",
     "ai": "latest"
   }
 }

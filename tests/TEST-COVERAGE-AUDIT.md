@@ -327,20 +327,8 @@ This document tracks test coverage for all features in the AI SDK provider for C
 1. Content moderation - analysis and category filtering
 2. Custom inference - prediction, batch, job status, webhooks, priority
 
-### Completed ✅ (Previously in Priority Actions)
-- ~~Add functional tests for audio features (TTS, STT, Music)~~ ✅ Done
-- ~~Add tests for video output formats~~ ✅ Done  
-- ~~Add tests for LLM parameters~~ ✅ Done
-- ~~Add voice utility function tests~~ ✅ Done
-- ~~Add VERSION export test~~ ✅ Done
-- ~~Add generateId option test~~ ✅ Done
-- ~~Enhance registry method tests~~ ✅ Done
-
 ## Test File Health
 
-### Duplicate Tests
-- **DUPLICATE:** `error-chute-id.test.ts` exists in both unit/ and integration/
-- **RECOMMENDATION:** Review and consolidate
 
 ### Test Organization
 - ✅ Good separation between unit and integration tests
@@ -353,7 +341,7 @@ This document tracks test coverage for all features in the AI SDK provider for C
 - ✅ Tests handle API unavailability gracefully
 - ✅ GitHub Actions workflow configured (`.github/workflows/test.yml`)
 - ✅ Tests organized by speed (unit → integration → slow)
-- ✅ No permanently skipped tests (max tokens test fixed)
+- ✅ No permanently skipped tests 
 
 ## Test Organization
 
@@ -387,7 +375,7 @@ The CI/CD pipeline runs automatically on PRs and pushes to protected branches (`
 
 PRs to feature branches (e.g., `feature/foo`) will NOT trigger the workflow.
 
-**Setup Required:**
+**Setup Required for Developer using Github Actions:**
 1. Add `CHUTES_API_KEY` to your GitHub repository secrets:
    Settings → Secrets and variables → Actions → New repository secret
 
@@ -401,10 +389,9 @@ PRs to feature branches (e.g., `feature/foo`) will NOT trigger the workflow.
 
 ## Next Steps
 
-1. Add `CHUTES_API_KEY` secret to GitHub repository (required for CI/CD)
-2. Configure branch protection rules in GitHub settings
-3. Create missing functional tests for content moderation (threshold scores, flagged detection)
+
+1. Create missing functional tests for content moderation (threshold scores, flagged detection)
 4. Create missing functional tests for custom inference (prediction, batch, job status)
 5. Add test for image `n` parameter (multiple images)
-6. Review and consolidate duplicate `error-chute-id.test.ts` files
+
 
