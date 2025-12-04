@@ -1,6 +1,6 @@
 {
   "name": "@chutes-ai/ai-sdk-provider",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chutes.ai provider for the Vercel AI SDK",
   "keywords": [
     "ai",
