@@ -63,35 +63,6 @@ npm install @chutes-ai/ai-sdk-provider ai
 npm install @chutes-ai/ai-sdk-provider ai@^5.0.0
 ```
 
-### From GitHub (Private Access or Development)
-
-**For team members or beta testers:** Install directly from the GitHub repository (works with Vercel deployments):
-
-```bash
-# Install from GitHub repository
-npm install git+https://github.com/YOUR_USERNAME/ai-sdk-provider-chutes.git
-
-# Or install a specific version/branch/commit
-npm install git+https://github.com/YOUR_USERNAME/ai-sdk-provider-chutes.git#v0.1.0
-npm install git+https://github.com/YOUR_USERNAME/ai-sdk-provider-chutes.git#main
-```
-
-**In your `package.json`:**
-```json
-{
-  "dependencies": {
-    "@chutes-ai/ai-sdk-provider": "git+https://github.com/YOUR_USERNAME/ai-sdk-provider-chutes.git",
-    "ai": "latest"
-  }
-}
-```
-
-**For Vercel deployments:**
-- Add the dependency to `package.json` as shown above
-- Set `CHUTES_API_KEY` in your Vercel project's environment variables
-- Vercel will automatically install from GitHub during build
-- No additional configuration needed!
-
 ### From Tarball (Offline or Private Distribution)
 
 ```bash
@@ -679,7 +650,7 @@ console.log('Job submitted:', result.jobId);
 
 ### Chute Warmup (Therm)
 
-Pre-warm chutes to eliminate cold start latency and ensure instant response times. The "therm" feature (named after thermals that gliders use to gain altitude) proactively spins up chute infrastructure before you need it.
+Pre-warm chutes to eliminate cold start latency and ensure instant response times. Therm will proactively spin up chute infrastructure before you need it.
 
 #### Why Warmup?
 
@@ -769,28 +740,7 @@ await ensureWarm('your-chute-id');
 const response = await generateText({ model: chutes('your-chute-id'), prompt });
 ```
 
-#### Scheduled Warmup
 
-Keep chutes warm during business hours:
-
-```typescript
-// Example: Run every 5 minutes during business hours
-async function keepWarm() {
-  const criticalChutes = [
-    'chute-id-1',
-    'chute-id-2',
-  ];
-  
-  for (const chuteId of criticalChutes) {
-    try {
-      const result = await chutes.therm.warmup(chuteId);
-      console.log(`${chuteId}: ${result.status} (${result.instanceCount} instances)`);
-    } catch (error) {
-      console.error(`Failed to warm ${chuteId}:`, error.message);
-    }
-  }
-}
-```
 
 #### Thermal Monitor (Non-Blocking)
 
@@ -847,9 +797,9 @@ const monitor = chutes.therm.monitor('chute-id', {
 | `waitUntilHot(timeout?)` | `Promise<void>` | Block until hot or timeout |
 | `onStatusChange(cb)` | `() => void` | Subscribe to changes, returns unsubscribe |
 
-##### Standalone Factory
+##### Standalone Usage
 
-You can also create monitors without a provider:
+You can also create monitors directly without instantiating the full Chutes provider:
 
 ```typescript
 import { createThermalMonitor } from '@chutes-ai/ai-sdk-provider';
@@ -1296,7 +1246,7 @@ A: All open-source models hosted on Chutes.ai, including language models, image 
 A: No, Chutes.ai exclusively hosts open-source models. For closed-source models, use their official providers.
 
 **Q: How do I find the right chute URL?**  
-A: Visit [chutes.ai/playground](https://chutes.ai/playground) or use the model registry API to discover available chutes.
+A: Visit [chutes.ai/playground](https://chutes.ai/app) or use the model registry API to discover available chutes.
 
 **Q: Does this work with Next.js?**  
 A: Yes! This provider works with any framework that supports the Vercel AI SDK.
@@ -1326,7 +1276,7 @@ A: Yes, but generation time increases with duration. Video generation typically 
 
 **Solution**:
 - Verify the chute URL is correct
-- Check that the chute exists at [chutes.ai/playground](https://chutes.ai/playground)
+- Check that the chute exists at [chutes.ai/playground](https://chutes.ai/app)
 - Ensure the chute is deployed and running
 - Verify your API key has access to the chute
 
@@ -1342,7 +1292,7 @@ console.log('Available chutes:', availableModels.map(m => m.slug));
 **Cause**: The `CHUTES_API_KEY` environment variable is not set, is invalid, or has expired.
 
 **Solution**:
-- Get your API key from [chutes.ai](https://chutes.ai)
+- Get your API key from [chutes.ai](https://chutes.ai/app/api)
 - Set it in your environment:
   ```bash
   export CHUTES_API_KEY=your-api-key-here
@@ -1488,10 +1438,48 @@ If you encounter issues not covered here:
 
 Contributions are welcome! Please follow these guidelines:
 
+### Branching Strategy
+
+- **`main` branch**: Contains the current published npm version. Direct pushes are not accepted.
+- **`DEV` branch**: Active development branch with unreleased features and fixes.
+- **`beta-*` branches**: Beta features and experimental changes.
+
+**All pull requests must be forked from the `DEV` branch, not `main`.**
+
+### Contribution Workflow
+
+1. **Fork the repository** and clone your fork
+2. **Create a feature branch** from `DEV`:
+   ```bash
+   git checkout DEV
+   git checkout -b feature/your-feature-name
+   ```
+3. **Make your changes** following the guidelines below
+4. **Submit a pull request** to the `DEV` branch (not `main`)
+
+### Development Guidelines
+
 1. Follow TDD principles (test first!)
 2. Maintain >90% test coverage
 3. Follow the existing code style
 4. Update documentation for new features
+5. Write clear, descriptive commit messages (we use [Conventional Commits](https://www.conventionalcommits.org/))
+
+### Testing Your Changes
+
+```bash
+# Run unit tests
+npm run test:unit
+
+# Run all tests
+npm run test:all
+
+# Check code coverage
+npm run test:coverage
+
+# Type checking
+npm run typecheck
+```
 
 ## License
 
@@ -1512,4 +1500,4 @@ MIT © [Chutes.ai](https://chutes.ai)
 
 ---
 
-**Built with ❤️ for the open-source AI community**
+**Built with respect for the open-source AI community**
